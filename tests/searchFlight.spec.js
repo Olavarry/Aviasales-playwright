@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
-import { SearchPage } from '../pages/searchPage'
-import { ResultsPage } from '../pages/resultsPage'
+import { SearchPage } from '../pages/searchPage';
+import { ResultsPage } from '../pages/resultsPage';
 
 test('Search flight', async ({ page, context }) => {
 

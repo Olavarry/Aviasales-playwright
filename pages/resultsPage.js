@@ -2,7 +2,8 @@ const { test, expect } = require('@playwright/test');
 
 exports.ResultsPage = class resultsPage{
     constructor(page){
-        this.page = page
+
+        this.page = page;
 
         this.origin_input = page.locator('#origin');
         this.destination_input = page.locator('#destination'); 
