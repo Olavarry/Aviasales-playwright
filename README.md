@@ -11,6 +11,7 @@ npm i
 **To run tests use:**
 
 npm run test
+
 npm run test:headed
 
 **To see report run:**
