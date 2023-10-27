@@ -2,9 +2,10 @@ const { test, expect } = require('@playwright/test');
 
 exports.SearchPage = class searchPage{
     constructor(page){
-        this.page = page
+        
+        this.page = page;
 
-        this.theme_toggle = page.locator('[data-selene-widget="navbar"] [data-test-id="switch"]')
+        this.theme_toggle = page.locator('[data-selene-widget="navbar"] [data-test-id="switch"]');
         this.origin_input = page.locator('#origin');
         this.destination_input = page.locator('#destination');
         this.departureDate_input = page.locator('[data-test-id="departure-date-input"]');
@@ -22,8 +23,8 @@ exports.SearchPage = class searchPage{
         await this.page.goto('https://www.aviasales.com/');
     }
 
-    async darkTheme(){
-        await this.theme_toggle.click()
+    async enableNightTheme(){
+        await this.theme_toggle.click();
     }
 
     async fillSearchFields(origin, airportOrigin, destination, departureDate, passengersNum){
@@ -38,10 +39,9 @@ exports.SearchPage = class searchPage{
         await this.page.getByLabel(formattedDate).getByText(formattedDate.split(' ')[2]).click();
         await this.noReturn_Btn.click();
         await this.passengers_field.click();
-        await this.page.pause()
         while(await this.setPassengerNum.textContent() < passengersNum){
             await this.incrPassengers_link.click();
-        }  
+        };
     }
 
     async submitSearch(){
@@ -50,17 +50,5 @@ exports.SearchPage = class searchPage{
         const newTab = await pagePromise;
         return newTab;
     }
-
-    async validateResults(origin, airportOrigin, destination, departureDate, passengersNum){
-        await expect(this.origin_input).toHaveValue(airportOrigin);
-        await expect(this.destination_input).toHaveValue(destination);
-        let options = { weekday: 'short', month: 'long', day: 'numeric' };
-        let depDate  = new Date(departureDate);
-        let formattedDate = depDate.toLocaleDateString("en-US", options);
-        await expect(this.departureDate_input).toHaveValue(formattedDate);
-        await expect(this.returnDate_input).toHaveValue('');
-        await expect(this.passengersNum_field).toHaveText(passengersNum + ' passengers');
-    }
-
 
 }
