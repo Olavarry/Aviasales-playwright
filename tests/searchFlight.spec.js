@@ -19,7 +19,7 @@ test('search fligh ny to berlin', async ({ page, context }) => {
   const page1 = await page1Promise;
 
   //assertions
-  await expect(page1).toHaveTitle(/NYC/);
+  await expect(page1).toHaveTitle(/Aviasales.com/);
   await expect(page1.locator('#origin')).toHaveValue('John F. Kennedy International Airport');
   await expect(page1.locator('#destination')).toHaveValue('Berlin');
   await expect(page1.locator('[data-test-id="departure-date-input"]')).toHaveValue('Mon, October 30');
