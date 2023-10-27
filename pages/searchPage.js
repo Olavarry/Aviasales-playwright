@@ -7,7 +7,6 @@ exports.SearchPage = class searchPage{
         this.theme_toggle = page.locator('[data-selene-widget="navbar"] [data-test-id="switch"]')
         this.origin_input = page.locator('#origin');
         this.destination_input = page.locator('#destination');
-        this.departureDate_option = page.getByLabel('Mon Oct 30 2023').getByText('30');
         this.departureDate_input = page.locator('[data-test-id="departure-date-input"]');
         this.noReturn_Btn = page.locator('[data-test-id="no-return-ticket"]');
         this.passengers_field = page.locator('[data-test-id="passengers-field"]');
