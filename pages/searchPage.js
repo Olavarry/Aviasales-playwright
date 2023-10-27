@@ -22,7 +22,7 @@ exports.SearchPage = class searchPage{
         await this.page.goto('https://www.aviasales.com/');
     }
 
-    async darkTheme(){
+    async enableNightTheme(){
         await this.theme_toggle.click()
     }
 
@@ -50,17 +50,5 @@ exports.SearchPage = class searchPage{
         const newTab = await pagePromise;
         return newTab;
     }
-
-    async validateResults(origin, airportOrigin, destination, departureDate, passengersNum){
-        await expect(this.origin_input).toHaveValue(airportOrigin);
-        await expect(this.destination_input).toHaveValue(destination);
-        let options = { weekday: 'short', month: 'long', day: 'numeric' };
-        let depDate  = new Date(departureDate);
-        let formattedDate = depDate.toLocaleDateString("en-US", options);
-        await expect(this.departureDate_input).toHaveValue(formattedDate);
-        await expect(this.returnDate_input).toHaveValue('');
-        await expect(this.passengersNum_field).toHaveText(passengersNum + ' passengers');
-    }
-
 
 }
